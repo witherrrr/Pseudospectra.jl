@@ -208,7 +208,7 @@ function new_matrix(A::AbstractMatrix,
             else
                 # For some reason Julia devs think a real Schur decomp
                 # should shadow the true (not real!) thing
-                F = schur(A .+ zero(eltype(A))*im)
+                F = Schur{Complex}(schur(A))
             end
             Tschur,U,eigA  = F.T,F.Z,F.values
             haveschur = true
